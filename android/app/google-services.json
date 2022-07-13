@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296458422087",
+    "project_id": "mecare-30268",
+    "storage_bucket": "mecare-30268.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296458422087:android:1170c203e812aaad78ee62",
+        "android_client_info": {
+          "package_name": "com.example.me_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296458422087-r2101cf2c35g3a9496ghe58vp8n15l3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1qTR5MvrHLLbkH6s6M4mE5SD-2lfdUyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296458422087-r2101cf2c35g3a9496ghe58vp8n15l3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
