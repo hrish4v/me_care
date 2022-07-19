@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:me_care/firestoresSer.dart';
+import 'package:me_care/makeAppointment.dart';
 
 class Doctors extends StatefulWidget {
   late String city;
@@ -84,66 +85,77 @@ class _DoctorsState extends State<Doctors> {
                       ),
                     );
                   } else {
-                    return Container(
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(12),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromARGB(255, 47, 100, 49)
-                                .withOpacity(0.4),
-                            spreadRadius: 5,
-                            blurRadius: 5,
-                            offset: Offset(0, 3), // changes position of shadow
+                    return GestureDetector(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MakeAppointment(
+                            imgURL: snapshot.data!.docs[item].get("photo"),
+                            name: snapshot.data!.docs[item].get("name"),
                           ),
-                        ],
+                        ),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromARGB(255, 47, 100, 49)
-                                      .withOpacity(0.3),
-                                  spreadRadius: 4,
-                                  blurRadius: 4,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                              shape: BoxShape.circle,
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 47, 100, 49)
+                                  .withOpacity(0.4),
+                              spreadRadius: 5,
+                              blurRadius: 5,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
                             ),
-                            child: Container(
-                              height: 70,
-                              width: 70,
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
                               decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    snapshot.data!.docs[item].get("photo"),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 47, 100, 49)
+                                        .withOpacity(0.3),
+                                    spreadRadius: 4,
+                                    blurRadius: 4,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
                                   ),
-                                  fit: BoxFit.fill,
-                                ),
-                                border: Border.all(
-                                  color: Color(0xFF1d6614),
-                                ),
+                                ],
                                 shape: BoxShape.circle,
                               ),
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      snapshot.data!.docs[item].get("photo"),
+                                    ),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  border: Border.all(
+                                    color: Color(0xFF1d6614),
+                                  ),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
                             ),
-                          ),
-                          Text(
-                            snapshot.data!.docs[item].get("name"),
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(0xFF1d6614),
+                            Text(
+                              snapshot.data!.docs[item].get("name"),
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color(0xFF1d6614),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   }

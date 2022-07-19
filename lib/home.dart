@@ -28,6 +28,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     // TODO: implement initState
+    _textEditingController.clear();
     controller = FixedExtentScrollController();
     super.initState();
   }
@@ -35,6 +36,8 @@ class _HomeState extends State<Home> {
   @override
   void dispose() {
     // TODO: implement dispose
+    _textEditingController.clear();
+    _textEditingController.dispose();
     controller.dispose();
     super.dispose();
   }
@@ -104,20 +107,21 @@ class _HomeState extends State<Home> {
                           controller: _textEditingController,
                           style: TextStyle(color: Color(0xFF207016)),
                           decoration: InputDecoration(
-                              fillColor: Colors.grey,
-                              hintText: "Enter the city",
-                              enabledBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(25)),
-                                borderSide: const BorderSide(
-                                    color: Color(0xFF207016), width: 0.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(25)),
-                                borderSide: const BorderSide(
-                                    color: Color(0xFF207016), width: 1),
-                              )),
+                            fillColor: Colors.grey,
+                            hintText: "Enter the city",
+                            enabledBorder: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
+                              borderSide: const BorderSide(
+                                  color: Color(0xFF207016), width: 0.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
+                              borderSide: const BorderSide(
+                                  color: Color(0xFF207016), width: 1),
+                            ),
+                          ),
                         ),
                       ),
                       Container(
@@ -229,8 +233,8 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
+                        onTap: () async {
+                          await Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => Doctors(
                                 city: _textEditingController.text,
@@ -238,6 +242,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           );
+                          _textEditingController.clear();
                         },
                         child: Container(
                           width: 130,
